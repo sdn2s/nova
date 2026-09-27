@@ -1,0 +1,6 @@
+/bin/
+/dist/
+/.upstream/
+/nova.toml
+/lists/*-user.txt
+/logs/

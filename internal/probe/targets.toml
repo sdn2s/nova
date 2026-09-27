@@ -1,0 +1,47 @@
+[[target]]
+name = "DiscordMain"
+url = "https://discord.com"
+
+[[target]]
+name = "DiscordGateway"
+url = "https://gateway.discord.gg"
+
+[[target]]
+name = "DiscordCDN"
+url = "https://cdn.discordapp.com"
+
+[[target]]
+name = "DiscordUpdates"
+url = "https://updates.discord.com"
+
+[[target]]
+name = "YouTubeWeb"
+url = "https://www.youtube.com"
+
+[[target]]
+name = "YouTubeShort"
+url = "https://youtu.be"
+
+[[target]]
+name = "YouTubeImage"
+url = "https://i.ytimg.com"
+
+[[target]]
+name = "YouTubeVideoRedirect"
+url = "https://redirector.googlevideo.com"
+
+[[target]]
+name = "GoogleMain"
+url = "https://www.google.com"
+
+[[target]]
+name = "GoogleGstatic"
+url = "https://www.gstatic.com"
+
+[[target]]
+name = "CloudflareWeb"
+url = "https://www.cloudflare.com"
+
+[[target]]
+name = "CloudflareCDN"
+url = "https://cdnjs.cloudflare.com"

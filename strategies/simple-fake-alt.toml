@@ -1,0 +1,66 @@
+name = "simple-fake-alt"
+source = "flowseal/zapret-discord-youtube 1.10.3, general (SIMPLE FAKE ALT).bat"
+
+[[profile]]
+name = "udp:443 list-general"
+udp = "443"
+hostlist = ["list-general.txt", "list-general-user.txt"]
+hostlist_exclude = ["list-exclude.txt", "list-exclude-user.txt"]
+ipset_exclude = ["ipset-exclude.txt", "ipset-exclude-user.txt"]
+args = ["--dpi-desync=fake", "--dpi-desync-repeats=6", "--dpi-desync-fake-quic={bin}/quic_initial_www_google_com.bin"]
+
+[[profile]]
+name = "udp:19294-19344,50000-50100 discord,stun"
+udp = "19294-19344,50000-50100"
+l7 = "discord,stun"
+args = ["--dpi-desync=fake", "--dpi-desync-fake-discord={bin}/ACTIVE_DISCORD_UDP.bin", "--dpi-desync-fake-stun={bin}/ACTIVE_DISCORD_UDP.bin", "--dpi-desync-repeats=6"]
+
+[[profile]]
+name = "tcp:2053,2083,2087,2096,8443 discord.media"
+tcp = "2053,2083,2087,2096,8443"
+domains = ["discord.media"]
+args = ["--dpi-desync=fake", "--dpi-desync-repeats=6", "--dpi-desync-fooling=badseq", "--dpi-desync-badseq-increment=2", "--dpi-desync-fake-tls={bin}/tls_clienthello_www_google_com.bin"]
+
+[[profile]]
+name = "tcp:443 list-google"
+tcp = "443"
+hostlist = ["list-google.txt"]
+args = ["--ip-id=zero", "--dpi-desync=fake", "--dpi-desync-repeats=6", "--dpi-desync-fooling=badseq", "--dpi-desync-badseq-increment=2", "--dpi-desync-fake-tls={bin}/tls_clienthello_www_google_com.bin"]
+
+[[profile]]
+name = "tcp:80,443 list-general"
+tcp = "80,443"
+hostlist = ["list-general.txt", "list-general-user.txt"]
+hostlist_exclude = ["list-exclude.txt", "list-exclude-user.txt"]
+ipset_exclude = ["ipset-exclude.txt", "ipset-exclude-user.txt"]
+args = ["--dpi-desync=fake", "--dpi-desync-repeats=6", "--dpi-desync-fooling=badseq", "--dpi-desync-badseq-increment=2", "--dpi-desync-fake-tls={bin}/stun2.bin", "--dpi-desync-fake-tls={bin}/tls_clienthello_www_google_com.bin", "--dpi-desync-fake-http={bin}/tls_clienthello_max_ru.bin"]
+
+[[profile]]
+name = "udp:443 ipset-all"
+udp = "443"
+hostlist_exclude = ["list-exclude.txt", "list-exclude-user.txt"]
+ipset = ["ipset-all.txt"]
+ipset_exclude = ["ipset-exclude.txt", "ipset-exclude-user.txt"]
+args = ["--dpi-desync=fake", "--dpi-desync-repeats=6", "--dpi-desync-fake-quic={bin}/quic_initial_www_google_com.bin"]
+
+[[profile]]
+name = "tcp:80,443,8443 ipset-all"
+tcp = "80,443,8443"
+hostlist_exclude = ["list-exclude.txt", "list-exclude-user.txt"]
+ipset = ["ipset-all.txt"]
+ipset_exclude = ["ipset-exclude.txt", "ipset-exclude-user.txt"]
+args = ["--dpi-desync=fake", "--dpi-desync-repeats=6", "--dpi-desync-fooling=badseq", "--dpi-desync-badseq-increment=2", "--dpi-desync-fake-tls={bin}/stun2.bin", "--dpi-desync-fake-tls={bin}/tls_clienthello_www_google_com.bin", "--dpi-desync-fake-http={bin}/tls_clienthello_max_ru.bin"]
+
+[[profile]]
+name = "game-tcp ipset-all"
+game = "tcp"
+ipset = ["ipset-all.txt"]
+ipset_exclude = ["ipset-exclude.txt", "ipset-exclude-user.txt"]
+args = ["--dpi-desync=fake", "--dpi-desync-repeats=6", "--dpi-desync-any-protocol=1", "--dpi-desync-cutoff=n3", "--dpi-desync-fooling=badseq", "--dpi-desync-badseq-increment=2", "--dpi-desync-fake-tls={bin}/stun2.bin", "--dpi-desync-fake-tls={bin}/tls_clienthello_www_google_com.bin", "--dpi-desync-fake-http={bin}/tls_clienthello_max_ru.bin", "--dpi-desync-fake-unknown={bin}/stun2.bin", "--dpi-desync-fake-unknown={bin}/tls_clienthello_www_google_com.bin"]
+
+[[profile]]
+name = "game-udp ipset-all"
+game = "udp"
+ipset = ["ipset-all.txt"]
+ipset_exclude = ["ipset-exclude.txt", "ipset-exclude-user.txt"]
+args = ["--dpi-desync=fake", "--dpi-desync-repeats=10", "--dpi-desync-any-protocol=1", "--dpi-desync-fake-unknown-udp={bin}/ACTIVE_GAME_UDP.bin", "--dpi-desync-cutoff=n2"]
