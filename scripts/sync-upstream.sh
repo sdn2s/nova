@@ -13,6 +13,8 @@ echo "upstream: $(cat "$src/.service/version.txt") ($(git -C "$src" rev-parse --
 mkdir -p bin
 cp "$src"/bin/* bin/
 (cd bin && shasum -a 256 $(ls | grep -v SHA256SUMS) > SHA256SUMS)
+cp bin/SHA256SUMS bin.sha256
+git -C "$src" rev-parse HEAD > upstream.ref
 
 mkdir -p lists
 for f in list-general.txt list-google.txt list-exclude.txt ipset-exclude.txt; do
